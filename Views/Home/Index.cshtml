@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+
+    <h2>Hello from Hesam</h2>
+    <h2 id="test"></h2>
+    <input id="getData" type="submit" value="getData" />
+    <ul id="myul"></ul>
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<script>
+    
+    
+
+    document.getElementById("getData").addEventListener("click", function (e) {
+        
+        
+      const myul=document.getElementById('myul')
+        fetch('https://localhost:7226/api/name', {
+            method: 'GET',
+            
+        })
+            .then(response => response.json())
+            .then((res)=>{
+                console.log(res)
+res.forEach(element => {
+                    const name = document.createElement('li')
+                    name.innerText = element.name;
+                    const type = document.createElement('li')
+                    type.innerText = element.type;
+                    myul.appendChild(name)
+                    myul.appendChild(type)
+
+});
+
+                // res.forEche()
+
+                // res.forEche(item =>{
+                //     let name = document.createElement('li').innerText = item.name;
+                //     let type = document.createElement('li').innerText = item.type;
+                //     myul.appendChild(name)
+                //     myul.appendChild(type)
+                // })
+            document.getElementById("test").innerHTML= JSON.stringify(res)
+            })
+
+
+
+    })
+
+</script>
